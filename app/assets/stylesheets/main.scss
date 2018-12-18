@@ -38,18 +38,21 @@ body {
   margin: 0;
   max-width: 960px;
 }
-
-.alert {
+.flash-flex {
   position: absolute;
-    background: wheat;
-    z-index: 100;
-    top: 69px;
-    padding: 7px;
-    border-color: coral;
-    border-style: double;
-    left: 2;
-    left: 100px;
+  left: 100px;
+  top: 69px;
+  z-index: 100;
+
+  .flash {
+    margin:4px;
+      background: wheat;
+      padding: 7px;
+      border-color: coral;
+      border-style: double;
+  }
 }
+
 
 nav li {
   display: inline-block;
