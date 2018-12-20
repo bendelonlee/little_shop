@@ -10,13 +10,17 @@
     <%= button_to("Edit Item", dashboard_item_edit_path(item)) %>
 
       <% if item.enabled? %>
+        <p> Status: Enabled
         <%= button_to("Disable Item", dashboard_item_toggle_path(item), method: :patch) %>
+        </p>
       <% else %>
+        <p> Status: Disabled
         <%= button_to("Enable Item", dashboard_item_toggle_path(item), method: :patch) %>
+        </p>
       <% end %>
 
     <% if item.never_ordered? %>
-      <p>No user has ever orderd this item: <%= button_to("Delete Item", dashboard_item_path(item), method: :delete) %></p>
+      <p>No user has ever ordered this item: <%= button_to("Delete Item", dashboard_item_path(item), method: :delete, data: {confirm: "Are you sure?"}) %></p>
     <% end %>
 
   </div>
