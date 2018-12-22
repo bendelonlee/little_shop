@@ -86,4 +86,17 @@ describe 'As a Merchant' do
 
     expect(current_path).to eq("/dashboard/orders/#{order_2.id}")
   end
+
+  it 'If the users desired quantity is greater than my current inventory quantity for that item, then I do not see a fulfill button or linkvisit order show page from dashboard, for each item of mine in order, I see' do
+
+  end
 end
+
+# USER STORY 61
+# As a merchant
+# When I visit an order show page from my dashboard
+# For each item of mine in the order
+
+# If the user's desired quantity is greater than my current inventory quantity for
+# that item, then I do not see a "fulfill" button or link
+# Instead I see a big red notice next to the item indicating I cannot fulfill this item
