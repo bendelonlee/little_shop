@@ -14,6 +14,9 @@ describe "as an admin" do
     expect(current_path).to eq(admin_merchant_path(merchant))
     expect(page).to have_content(merchant.name)
     expect(page).to have_content(merchant.email)
+    expect(page).to have_content("Pending Orders")
+    expect(page).to have_link("View Items")
+    #link won't work yet
   end
 end
 describe "as a visitor" do

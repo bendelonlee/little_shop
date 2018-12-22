@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe 'merchant item index page' do
   context "as a merchant" do
-    xit 'displays my items' do
+    it 'displays my items' do
 
       merchant = FactoryBot.create(:merchant)
       item_1 = FactoryBot.create(:item)

@@ -57,6 +57,18 @@ RSpec.describe User, type: :model do
       order_4 = FactoryBot.create(:fulfilled, items: [item_1, item_2])
 
       expect(user.merchant_pending_orders).to eq([order_2, order_5])
+
+    end
+    it '.my_order_items(order)' do
+      merchant = FactoryBot.create(:merchant)
+      item_1 = FactoryBot.create(:item)
+      item_2 = FactoryBot.create(:item)
+      FactoryBot.create(:item)
+      merchant.items << item_1
+
+      order = FactoryBot.create(:order, items: [item_1, item_2])
+
+      expect(merchant.my_order_items(order)).to eq(item_1.order_items)
     end
   end
 end

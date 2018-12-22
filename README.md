@@ -6,7 +6,6 @@ https://dbdiagram.io/d/5c1539dc97b0960014c337df
 
 # Rubric: https://github.com/turingschool-projects/little_shop_v2/blob/master/LittleShopRubric.pdf
 
-
 # DTR: https://docs.google.com/document/d/1Yk3XVh2ThZJTLu6YO8zYsrDdLwssvQEewJIszPIGfcg/edit?usp=sharing
 
 Project: Little Shop

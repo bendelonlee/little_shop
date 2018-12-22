@@ -5,7 +5,6 @@ RSpec.describe Item, type: :model do
     it {should validate_presence_of :name}
     it {should validate_presence_of :instock_qty}
     it {should validate_presence_of :price}
-    it {should validate_presence_of :image}
     it {should validate_presence_of :description}
   end
   describe 'relationships' do
@@ -23,6 +22,5 @@ RSpec.describe Item, type: :model do
       expect(item_1.never_ordered?).to eq(true)
       expect(item_2.never_ordered?).to eq(false)
     end
-
   end
 end

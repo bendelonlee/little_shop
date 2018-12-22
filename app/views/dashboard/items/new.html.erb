@@ -1,0 +1,13 @@
+<%= form_for @item, url: dashboard_create_item_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.label :image %>
+  <%= f.url_field :image, value: "" %>
+  <%= f.label :price %>
+  <%= f.number_field :price, in: 0.01..2000000.0, step: 0.01 %>
+  <%= f.label :instock_qty %>
+  <%= f.number_field :instock_qty, in: 0..2000000, step: 1%>
+  <%= f.submit %>
+<% end %>

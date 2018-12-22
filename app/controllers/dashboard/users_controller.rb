@@ -1,6 +1,7 @@
 class Dashboard::UsersController < ApplicationController
   def show
     @user = current_user
-    @orders = current_user.merchant_pending_orders
+    @orders = @user.merchant_pending_orders
+    render template: 'dashboard/users/show'
   end
 end

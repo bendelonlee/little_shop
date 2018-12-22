@@ -1,4 +1,4 @@
-<h5>Order Id: <%= link_to order.id, dashboard_order_path(order) %></h5>
+<h3>Order Id: <%= link_to order.id, dashboard_order_path(order) %></h3>
 Date Created: <%= order.created_at %>
 Quantity: <%= order.total_quantity %> items
 Price: <%= number_to_currency(order.total_price) %>

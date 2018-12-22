@@ -3,6 +3,17 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    redirect_to admin_merchant_path(@user) if @user.role == "merchant"
+  end
+
+  def merchant_show
+    @user = User.find(params[:id])
+    if @user.role == "registered"
+      redirect_to admin_user_path(@user)
+    else
+      @orders = @user.merchant_pending_orders
+      render template: 'dashboard/users/show'
+    end
   end
 
   def index

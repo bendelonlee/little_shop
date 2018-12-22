@@ -4,7 +4,8 @@
     <h5>Item id: <%= item.id %></h5>
     <ul>
       <li><%= item.name %></li>
-      <li>Price: number_to_currency(item.price)</li>
+      <li><%= item.description %></li>
+      <li>Price: <%= number_to_currency(item.price) %></li>
       <li><%= image_tag(item.image, class: :thumb) %></li>
       <li>In stock: <%= item.instock_qty %></li>
     </ul>

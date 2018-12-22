@@ -25,9 +25,8 @@ describe 'As a Merchant' do
 
     visit dashboard_path
 
-    click_on 'View Items'
+    expect(page).to have_link('View Items', href: dashboard_items_path)
 
-    expect(current_path).to eq(dashboard_items_path)
   end
 
   it 'If any users have pending orders containing items I sell, then I see a list of these orders' do
