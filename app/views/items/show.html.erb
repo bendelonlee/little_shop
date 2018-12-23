@@ -8,6 +8,10 @@
     <li><b>Merchant Name:</b> <%= @item.user.name %></li>
     <li><b>Inventory:</b> <%= @item.instock_qty %></li>
     <li><strong>Price: </strong><%= number_to_currency(@item.price) %></li>
-    <li><%= button_to "Add Item", carts_path(item_id: @item.id) %></li>
+    <% unless current_user && (current_user.admin? || current_user.merchant?) %>
+      <li>
+        <%= button_to "Add Item", carts_path(item_id: @item.id) %>
+      </li>
+    <% end %>
   </ul>
 </div>

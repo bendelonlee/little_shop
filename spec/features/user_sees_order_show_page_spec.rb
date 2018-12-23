@@ -52,23 +52,35 @@ describe 'As a user' do
       expect(page).to have_content("Grand total: $#{@order_1.total_price}")
     end
 
-    xit 'can cancel order if it is still pending' do
-      #Justin is doing
+    it 'can cancel order if it is still pending' do
+      @order_1.order_items.first.update(fulfilled: true)
+      item_1_stock_qty_before = @order_1.order_items.first.item.instock_qty
+      item_1_order_item_qty = @order_1.order_items.first.quantity
+      item_1_expected_qty = item_1_stock_qty_before + item_1_order_item_qty
+
+      item_2_stock_qty_before = @order_1.order_items.last.item.instock_qty
+      item_2_expected_qty = item_2_stock_qty_before
+
       visit profile_order_path(@order_1)
-      #cancel order
-      expect(false).to eq(true)
 
-      #       As a registered user
-      # When I visit an order's show page
-      # If the order is still "pending", I see a button or link to cancel the order
-      # When I click the cancel button for an order, the following happens:
-      # - Each row in the "order items" table is given a status of "unfulfilled"
-      # - The order itself is given a status of "cancelled"
-      # - Any item quantities in the order that were previously fulfilled have their quantities returned to their respective merchant's inventory for that item.
-      # - I am returned to my profile page
-      # - I see a flash message telling me the order is now cancelled
-      # - And I see that this order now has an updated status of "cancelled"
+      click_on "| Cancel Order?"
+
+      @order_1.order_items.each do |oi|
+        expect(oi.fulfilled).to eq(false)
+      end
+      expect(@order_1.status).to eq('cancelled')
+      item_1_stock_qty_after = Item.find(@order_1.order_items.first.item.id).instock_qty
+      expect(item_1_stock_qty_after).to eq(item_1_expected_qty)
+
+      item_2_stock_qty_after =Item.find(@order_1.order_items.last.item.id).instock_qty
+      expect(item_2_stock_qty_after).to eq(item_2_expected_qty)
+
+      expect(current_path).to eq(profile_path)
+      expect(page).to have_content("Order cancelled")
+
+      within(".order-#{@order_1.id}") do
+        expect(page).to have_content("Status: cancelled")
+      end
     end
-
   end
 end

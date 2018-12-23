@@ -1,13 +1,18 @@
-<% @users.each do |user| %>
-  <div id="user-<%=user.id%>">
-      <%= link_to(user.name, admin_user_path(user)) %> | Registered at <%= user.created_at.to_date %>
-      <p>Status: <%= user.status %>
+<div class='merchant-enable'>
+  <% @users.each do |user| %>
+    <div class='merchant-index'>
+      <div id="user-<%=user.id%>">
+          <h2><%= link_to(user.name, admin_user_path(user)) %></h2>
+          <p>Registered at <%= user.created_at.to_date %></p>
+          <p>Status: <%= user.status %>
 
-      <% if user.enabled? %>
-        <%= button_to("Disable", admin_disable_user_path(user), method: :patch) %>
-      <% else %>
-        <%= button_to("Enable", admin_enable_user_path(user), method: :patch) %>
-      <% end %>
-      </p>
-  </div>
-<% end %>
+          <% if user.enabled? %>
+            <%= button_to("Disable", admin_disable_user_path(user), method: :patch) %>
+          <% else %>
+            <%= button_to("Enable", admin_enable_user_path(user), method: :patch) %>
+          <% end %>
+          </p>
+      </div>
+    </div>
+  <% end %>
+</div>

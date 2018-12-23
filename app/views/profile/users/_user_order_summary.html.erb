@@ -8,3 +8,6 @@
     <h4><b>Total:</b> <%= number_to_currency(order.total_price) %> </h4>
   </div>
 <% end %>
+<% if @user.orders.count == 0 %>
+  <h3>No open orders. Go buy some stuff!</h3>
+<% end %>

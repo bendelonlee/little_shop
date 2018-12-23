@@ -66,5 +66,33 @@ RSpec.describe Order, type: :model do
       expect(order_2.pending?).to eq(false)
       expect(order_3.pending?).to eq(false)
     end
+
+    it '.cancel_order' do
+      item_1 = FactoryBot.create(:item)
+      item_2 = FactoryBot.create(:item)
+      item_3 = FactoryBot.create(:item)
+
+      item_1_pre_inv = item_1.instock_qty
+      item_2_pre_inv = item_2.instock_qty
+      item_3_pre_inv = item_3.instock_qty
+
+      order_1 = FactoryBot.create(:pending, items: [item_1,item_2,item_3])
+
+      item_1.order_items.first.update(price: 2, quantity: 3, fulfilled: false)
+      item_2.order_items.first.update(price: 3, quantity: 1, fulfilled: true)
+      item_3.order_items.first.update(price: 4, quantity: 5, fulfilled: false)
+
+      order_1.cancel_order
+
+      expect(order_1.status).to eq('cancelled')
+
+      expect(order_1.order_items[0].fulfilled).to eq(false)
+      expect(order_1.order_items[1].fulfilled).to eq(false)
+      expect(order_1.order_items[2].fulfilled).to eq(false)
+
+      expect(item_1.instock_qty).to eq(item_1_pre_inv)
+      expect(item_2.instock_qty).to eq(item_2_pre_inv + 1)
+      expect(item_3.instock_qty).to eq(item_3_pre_inv)
+    end
   end
 end

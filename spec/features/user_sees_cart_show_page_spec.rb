@@ -133,7 +133,9 @@ describe 'as a visitor or registered user' do
 
       visit cart_path
       click_on 'Check out'
-
+      within 'nav' do
+        expect(page).to have_content("Cart(0)")
+      end
       expect(current_path).to eq(profile_path)
       expect(page).to have_content('Order created successfully')
       expect(Order.last.status).to eq('pending')

@@ -269,11 +269,6 @@ label {
   margin: 10px;
   padding: 10px;
 }
-// .cart-item img {
-//   max-width: 250px;
-//   max-height: 300px;
-//   margin: 30px;
-// }
 
 #cart-item-title {
   font-size: 150%;
@@ -295,6 +290,11 @@ label {
 }
 
 #all-merchants {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.merchant-enable {
   display: flex;
   flex-wrap: wrap;
 }
