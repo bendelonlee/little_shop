@@ -31,13 +31,11 @@ describe 'order show page' do
       item_4 = FactoryBot.create(:item)
       item_5 = FactoryBot.create(:item)
 
-
       merchant.items += [item_1, item_4, item_5]
 
       customer = FactoryBot.create(:user)
       order = FactoryBot.create(:order, items: [item_1, item_2, item_5], user: customer)
       FactoryBot.create(:order, items: [item_4], user: customer)
-
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
 
@@ -70,17 +68,35 @@ describe 'order show page' do
         expect(page).to have_content("Subtotal: $#{order_item_1.subtotal}")
       end
     end
-  end
 
+    it 'Each item of mine in the order, if desired quantity if greater than my current inventory, then I do not see a fulfill button/link' do
+      merchant = FactoryBot.create(:merchant)
+      item_1 = FactoryBot.create(:item)
+      item_2 = FactoryBot.create(:item)
+      binding.pry
+      merchant.items += [item_1, item_2]
+
+      order = FactoryBot.create(:order)
+
+      order_item_1 = FactoryBot.create(:order_item, item: item_1, order: order, price: 3, quantity: 1.50)
+      order_item_2 = FactoryBot.create(:order_item, item: item_2, order: order, price: 2.75, quantity: 10)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+      visit dashboard_order_path(order)
+    end
+
+    it 'I see a big red notice, next to the item, indicating I cannot fulfill this item' do
+
+    end
+  end
 end
 
-
+# MERCHANT CANNOT FULFILL AN ORDER DUE TO LACK OF INVENTORY
+#
+# As a merchant
 
 # When I visit an order show page from my dashboard
-# I only see the items in the order that are being purchased from my inventory
-# I do not see any items in the order being purchased from other merchants
-# For each item, I see the following information:
-# - the name of the item, which is a link to my item's show page
-# - a small thumbnail of the item
-# - my price for the item
-# - the quantity the user wants to purchase
+
+# For each item of mine in the order
+# If the user's desired quantity is greater than my current inventory quantity for that item
+# Then I do not see a "fulfill" button or link
+# Instead I see a big red notice next to the item indicating I cannot fulfill this item
