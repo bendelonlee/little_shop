@@ -9,7 +9,7 @@
     <div class='cart-basket'>
       <% @cart.current_items.each do |item| %>
         <div class='item-<%= item.id %> cart-item'>
-          <%= image_tag item.image, alt: item.name, class: :small_thumb, onerror: 'this.src="/no_image_available.jpg"' %>
+          <%= image_tag item.image, alt: item.name, class: :small_thumb, onerror: 'this.src="/default_image.jpg"' %>
           <div class='cart-item-info'>
             <span id='cart-item-title'><h2><%= item.name.titleize %></h2></span>
             <h4>Sold by: <%= link_to "#{item.user.name.titleize}", merchants_path(item.user) %></h4>

@@ -64,6 +64,6 @@ describe 'As a Merchant' do
 
     click_button 'Create Item'
 
-    expect(page).to have_css("img[src='/no_image_available.jpg']")
+    expect(page).to have_css("img[src='/default_image.jpg']")
   end
 end

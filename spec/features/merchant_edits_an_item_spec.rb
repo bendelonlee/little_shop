@@ -77,7 +77,7 @@ describe 'as a merchant' do
     expect(page).to have_content("Item instock_qty must be greater than or equal to 0.")
   end
   it "when editing an item, the image field is blank I haven't added an image" do
-    @item.update(image: "/no_image_available.jpg")
+    @item.update(image: "/default_image.jpg")
 
     within "#item-#{@item.id}" do
       click_on "Edit Item"

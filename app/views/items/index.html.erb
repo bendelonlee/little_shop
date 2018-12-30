@@ -26,7 +26,7 @@
 <div class="flex-container">
   <% @items.each do |item| %>
     <div id="item-<%= item.id %>" class="inner-flex shadow">
-      <%= link_to image_tag(item.image, class: :thumb, onerror: 'this.src="/no_image_available.jpg"'), item_path(item)%>
+      <%= link_to image_tag(item.image, class: :thumb, onerror: 'this.src="/default_image.jpg"'), item_path(item)%>
       <h4><%= link_to(item.name.titleize, item_path(item)) %></h4>
       <ul>
         <li><b>Sold by:</b> <%= item.user.name.titleize %> </li>

@@ -1,7 +1,7 @@
 <div class='item-show-page'>
   <h1><%= @item.name.titleize %></h1>
   <div class="item-img">
-    <%= image_tag(@item.image, class: "big-picture", onerror: 'this.src="/no_image_available.jpg"') %>
+    <%= image_tag(@item.image, class: "big-picture", onerror: 'this.src="/default_image.jpg"') %>
   </div>
   <ul>
     <li><b>Description:</b> <%= @item.description %></li>

@@ -2,7 +2,7 @@
   <div class='order-item-container'>
     <div id="item-<%= order_item.item_id %>" class='show-order-item'>
       <h2><span id='item-number'>Item <%= i + 1 %>:</span></h2>
-        <%= image_tag(order_item.item.image, class: "thumb", onerror: 'this.src="/no_image_available.jpg"') %>
+        <%= image_tag(order_item.item.image, class: "thumb", onerror: 'this.src="/default_image.jpg"') %>
         <ul>
           <li><b>Name: </b><%= link_to "#{order_item.item.name.titleize}", item_path(order_item.item) %></li>
           <li><b>Description: </b><%= order_item.item.description %></li>

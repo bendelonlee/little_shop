@@ -40,8 +40,9 @@ describe 'As any type of user' do
     item_1 = FactoryBot.create(:item)
 
     visit items_path
+    save_and_open_page
     within "#item-#{item_1.id}" do
-      click_on("No image available")
+      click_on("Default Image")
     end
     expect(current_path).to eq(item_path(item_1))
   end

@@ -12,7 +12,7 @@
         <li><b>Name:</b> <%= item.name.titleize %></li>
         <li><b>Description:</b> <%= item.description %></li>
         <li><b>Price:</b> <%= number_to_currency(item.price) %></li>
-        <li><%= image_tag(item.image, class: :thumb,  onerror: 'this.src="/no_image_available.jpg"') %></li>
+        <li><%= image_tag(item.image, class: :thumb,  onerror: 'this.src="/default_image.jpg"') %></li>
         <li><b>In stock:</b> <%= item.instock_qty %></li>
       </ul>
       <% if merchant_user? %>
