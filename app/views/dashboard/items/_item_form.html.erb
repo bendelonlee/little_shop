@@ -3,7 +3,7 @@
 <%= f.label :description %>
 <%= f.text_area :description %>
 <%= f.label :image %>
-<% real_image = @item.image == "/no_image_available.jpg" ? "" : @item.image %>
+<% real_image = @item.image == "/default_image.jpg" ? "" : @item.image %>
 <%= f.url_field :image, value: real_image %>
 <%= f.label :price %>
 <%= f.number_field :price, in: 0.01..2000000.0, step: 0.01 %>
